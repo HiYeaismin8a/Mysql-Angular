@@ -1,0 +1,7 @@
+{
+  "name": "Jabil",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
