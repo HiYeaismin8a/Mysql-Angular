@@ -10,6 +10,7 @@ const http = require('http');
 const app = express();
 // Log requests to the console.
 app.use(logger('dev'));
+app.use(express.json());
 app.use("/",routes);
 
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
