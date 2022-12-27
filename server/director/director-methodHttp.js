@@ -1,7 +1,7 @@
 //MÉTODOS - LENGUAJE CONTROLLER
 var { getConnection } = require("../database/conexion");
 
-
+//GET - SELECT
 async function getDirectores(req, res) {
   return await getConnection().query( 'SELECT * FROM moviesbd.vistaDirector', function (err, result, fields) {
     if (err) {
@@ -14,8 +14,16 @@ async function getDirectores(req, res) {
   );
 }
 
+// POST - INSERT INTO
+
+//DELETE - DELETE
+
+//UPDATE - UPDATE
 
 
+
+
+//EXPORTS
 module.exports = {
   getDirectores,
 };
