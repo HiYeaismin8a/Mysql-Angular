@@ -58,25 +58,38 @@ const addDirectores = async (req, res) => {
 };
 
 //DELETE - DELETE
+async function deleteDirector(req, res) {
+  const { id } = req.params;
+  return await getConnection().query(
+    "DELETE FROM moviesbd.director WHERE PK_idDirector = ?", id,
+    function (err, result, fields) {
+      if (err) {
+        console.log(err);
+        return null;
+      }
+      console.log(result);
+      res.json(result);
+    }
+  );
+};
+
 
 //UPDATE - PUT
-const updateDirector = async (req, res) => {
-  try {
-      const { id } = req.params;
-      const { name_Director, age,active_ } = req.body;
-
-      if (id === undefined || name_Director === undefined || age== undefined || active_ === undefined) {
-          res.status(400).json({ message: "Bad Request. Please fill all field." });
+async function updateDirector(req, res) {
+  const { id } = req.params;
+  const { name_Director, age,active_ } = req.body;
+  const director = { name_Director, age, active_ };
+  return await getConnection().query(
+    "UPDATE moviesbd.director SET ? WHERE PK_idDirector = ?", [director, id],
+    function (err, result, fields) {
+      if (err) {
+        console.log(err);
+        return null;
       }
-
-      const director = { name_Director, age, active_ };
-      const connection = await getConnection();
-      const result = await connection.query("UPDATE moviesbd.director SET ? WHERE PK_idDirector = ?", [director, id]);
+      console.log(result);
       res.json(result);
-  } catch (error) {
-      res.status(500);
-      res.send(error.message);
-  }
+    }
+  );
 };
 
 //EXPORTS
@@ -85,4 +98,5 @@ module.exports = {
   getDirector,
   addDirectores,
   updateDirector,
+  deleteDirector,
 };
