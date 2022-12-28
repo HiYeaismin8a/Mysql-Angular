@@ -31,7 +31,6 @@ async function getDirector(req, res) {
 };
 
 // POST - INSERT INTO
-
 const addDirectores = async (req, res) => {
   const conexion = await getConnection();
   try {
@@ -44,14 +43,14 @@ const addDirectores = async (req, res) => {
       active_ === undefined
     ) {
       res.status(400).json({ message: "Bad Request. Please fill all field." });
-    } // console.log(req.body);
-
+    }
+    console.log(req.body);
     console.log(name_Director);
     const result = await conexion.query(
       "INSERT INTO moviesbd.director SET ?",
       director
     );
-    res.json("ADDDirector", result);
+    res.json("ADDDirector", result, res);
   } catch (error) {
     res.status(500);
     res.send(error.message);
