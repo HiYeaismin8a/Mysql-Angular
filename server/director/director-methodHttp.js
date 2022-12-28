@@ -4,7 +4,7 @@ var { getConnection } = require("../database/conexion");
 //GET - SELECT
 async function getDirectores(req, res) {
   return await getConnection().query(
-    "SELECT * FROM moviesbd.vistadirector",
+    "SELECT * FROM moviesbd.Director",
     function (err, result, fields) {
       if (err) {
         console.log(err);
@@ -14,21 +14,21 @@ async function getDirectores(req, res) {
       res.json(result);
     }
   );
-}
-
-// const getDirector = async (req, res) => {
-//   try {
-//     console.log(req.params);
-//     const { idDirector } = req.params;
-//     const connection = await getConnection();
-//     const result = await connection.query("SELECT PK_idDirector, name_Director, age, active_ FROM moviesbd.director WHERE PK_idDirector = ?", idDirector);
-//     res.json(result);
-// } catch (error) {
-//     res.status(500);
-//     res.send(error.message);
-// }
-// };
-
+};
+async function getDirector(req, res) {
+  const { id } = req.params;
+  return await getConnection().query(
+    "SELECT * FROM moviesbd.director WHERE PK_idDirector = ?", id,
+    function (err, result, fields) {
+      if (err) {
+        console.log(err);
+        return null;
+      }
+      console.log(result);
+      res.json(result);
+    }
+  );
+};
 
 // POST - INSERT INTO
 
@@ -60,9 +60,31 @@ const addDirectores = async (req, res) => {
 
 //DELETE - DELETE
 
-//UPDATE - UPDATE
+//UPDATE - PUT
+// const updateDirector = async (req, res) => {
+//   try {
+//       const { idDirector } = req.params;
+//       console.log(idDirector);
+//       const { name, age, active_ } = req.body;
+
+//       if ( name === undefined || age === undefined || active_ === undefined) {
+//           res.status(400).json({ message: "Bad Request. Please fill all field." });
+//       }
+
+//       const director = {  name, age, active_  };
+//       const connection = await getConnection();
+//       const result = await connection.query("UPDATE moviesbd.director SET name_Director=?,age=?,active_=? WHERE PK_idDirector = ?",  ['a', 'b', 'c', idDirector]);
+//       res.json(result);
+//   } catch (error) {
+//       res.status(500);
+//       res.send(error.message);
+//   }
+// };
+
 //EXPORTS
 module.exports = {
   getDirectores,
+  getDirector,
   addDirectores,
+  //updateDirector,
 };
