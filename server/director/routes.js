@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/", metodosDirector.getDirectores);
 router.get("/:id", metodosDirector.getDirector);
 router.post("/", metodosDirector.addDirectores);
-//router.put("/:id", metodosDirector.updateDirector);
+router.put("/:id", metodosDirector.updateDirector);
 
 
 module.exports = router;
