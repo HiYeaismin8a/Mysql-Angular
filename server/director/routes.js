@@ -4,10 +4,10 @@ const metodosDirector = require('./director-methodHttp');
 
 const express = require('express');
 const router = express.Router();
-router.get("/", metodosDirector.getDirectores);
-router.get("/:id", metodosDirector.getDirector);
-router.post("/", metodosDirector.addDirectores);
-router.put("/:id", metodosDirector.updateDirector);
-router.delete("/:id", metodosDirector.deleteDirector);
+router.get("/directores", metodosDirector.getDirectores);
+router.get("/director/:id", metodosDirector.getDirector);
+router.post("/director", metodosDirector.addDirectores);
+router.put("/director/:id", metodosDirector.updateDirector);
+router.delete("/director/:id", metodosDirector.deleteDirector);
 
 module.exports = router;
