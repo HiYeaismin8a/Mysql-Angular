@@ -1,86 +1,82 @@
 //MÉTODOS - LENGUAJE CONTROLLER
-var { getConnection } = require("../database/conexion");
+const { getConnection } = require("../database/conexion");
 
 //GET - SELECT
-async function getDirectores(req, res) {
+function getDirectores(req, res) {
   getConnection().query(
     "SELECT * FROM moviesbd.Director",
     function (err, result) {
       if (err) {
-        console.log(err);
-        res.header('Access-Control-Allow-Origin', '*').json(err);
+        res.header("Access-Control-Allow-Origin", "*").json(err);
         return;
       }
-      res.header('Access-Control-Allow-Origin', '*').json(result);
+      res.header("Access-Control-Allow-Origin", "*").json(result);
     }
   );
-};
-async function getDirector(req, res) {
-  const { id } = req.params;
-  return await getConnection().query(
-    "SELECT * FROM moviesbd.director WHERE PK_idDirector = ?", id,
-    function (err, result, fields) {
+}
+function getDirector(req, res) {
+  const { name } = req.params;
+  getConnection().execute(
+    "SELECT * FROM moviesbd.director WHERE name_Director = ?",
+    [name],
+    function (err, result) {
       if (err) {
-        console.log(err);
-        return null;
+        res.header("Access-Control-Allow-Origin", "*").json(err);
+        return;
       }
-      console.log(result);
-      res.json(result);
+      res.header("Access-Control-Allow-Origin", "*").json(result);
     }
   );
-};
+}
 
 // POST - INSERT INTO
-async function addDirectores(req, res) {
+function addDirectores(req, res) {
   const { name_Director, age, active_ } = req.body;
-  const director = { name_Director, age, active_ };
-  return await getConnection().query(
-    "INSERT INTO moviesbd.director SET ?", director,
-    function (err, result, fields) {
+  getConnection().query(
+    "INSERT INTO moviesbd.director VALUES (?,?,?)",
+    [name_Director, age, active_],
+    function (err, result) {
       if (err) {
-        console.log(err);
-        return null;
+        res.header("Access-Control-Allow-Origin", "*").json(err);
+        return;
       }
-      console.log(result);
-      res.json(result);
+      res.header("Access-Control-Allow-Origin", "*").json(result);
     }
   );
-};
+}
 
 //DELETE - DELETE
-async function deleteDirector(req, res) {
+function deleteDirector(req, res) {
   const { id } = req.params;
-  return await getConnection().query(
-    "DELETE FROM moviesbd.director WHERE PK_idDirector = ?", id,
-    function (err, result, fields) {
+  getConnection().execute(
+    "DELETE FROM moviesbd.director WHERE PK_idDirector = ?",
+    [id],
+    function (err, result) {
       if (err) {
-        console.log(err);
-        return null;
+        res.header("Access-Control-Allow-Origin", "*").json(err);
+        return;
       }
-      console.log(result);
-      res.json(result);
+      res.header("Access-Control-Allow-Origin", "*").json(result);
     }
   );
-};
-
+}
 
 //UPDATE - PUT
-async function updateDirector(req, res) {
+function updateDirector(req, res) {
   const { id } = req.params;
-  const { name_Director, age,active_ } = req.body;
-  const director = { name_Director, age, active_ };
-  return await getConnection().query(
-    "UPDATE moviesbd.director SET ? WHERE PK_idDirector = ?", [director, id],
-    function (err, result, fields) {
+  const { name_Director, age, active_ } = req.body;
+  getConnection().execute(
+    "UPDATE moviesbd.director SET name_Director=?, age=?, active_=? WHERE PK_idDirector = ?",
+    [name_Director, age, active_, id],
+    function (err, result) {
       if (err) {
-        console.log(err);
-        return null;
+        res.header("Access-Control-Allow-Origin", "*").json(err);
+        return;
       }
-      console.log(result);
-      res.json(result);
+      res.header("Access-Control-Allow-Origin", "*").json(result);
     }
   );
-};
+}
 
 //EXPORTS
 module.exports = {
