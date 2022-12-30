@@ -3,15 +3,15 @@ var { getConnection } = require("../database/conexion");
 
 //GET - SELECT
 async function getDirectores(req, res) {
-  return await getConnection().query(
+  getConnection().query(
     "SELECT * FROM moviesbd.Director",
-    function (err, result, fields) {
+    function (err, result) {
       if (err) {
         console.log(err);
-        return null;
+        res.header('Access-Control-Allow-Origin', '*').json(err);
+        return;
       }
-      console.log(result);
-      res.json(result);
+      res.header('Access-Control-Allow-Origin', '*').json(result);
     }
   );
 };
