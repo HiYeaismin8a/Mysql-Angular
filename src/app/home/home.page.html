@@ -1,20 +1,40 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <ion-label>#</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label>Nombre de director</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label>Edad de director</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label>Activo</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-label></ion-label>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    <ion-item *ngFor="let director of directores">
+      <ion-grid>
+        <ion-row>
+          <ion-col> {{director.PK_idDirector}} </ion-col>
+          <ion-col> {{director.name_Director}} </ion-col>
+          <ion-col> {{director.age}} </ion-col>
+          <ion-col> {{director.active_ }} </ion-col>
+          <ion-col>
+            <ion-button (click)="abrirRegistroDirector()"> EDITAR </ion-button>
+            <ion-button (click)="eliminarRegistroDirector(director.PK_idDirector)"> BORRAR </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+  </ion-list>
 </ion-content>
