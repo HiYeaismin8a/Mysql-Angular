@@ -24,7 +24,7 @@ function getDirector(req, res) {
         res.header("Access-Control-Allow-Origin", "*").json(err);
         return;
       }
-      res.header("Access-Control-Allow-Origin", "*").json(result);
+      res.header("Access-Control-Allow-Origin", "*").json(result[0]);
     }
   );
 }

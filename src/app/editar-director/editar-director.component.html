@@ -53,8 +53,8 @@
     </ion-card-content>
 
     <ion-card-content>
-      <ion-button (click)="agregarDirector()" hidden="true"> AGREGAR </ion-button>
-      <ion-button (click)="editarDirector()" > EDITAR </ion-button>
+      <ion-button (click)="agregarDirector()" [hidden]="id!==-1"> AGREGAR </ion-button>
+      <ion-button (click)="editarDirector()" [hidden]="id===-1" > EDITAR </ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>

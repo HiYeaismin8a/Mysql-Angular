@@ -17,7 +17,7 @@ export class HomePage {
     private directorService: DirectorService,
     private alertController: AlertController,
     private modalController: ModalController,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -39,26 +39,23 @@ export class HomePage {
       .getDirectores()
       .subscribe((directores) => (this.directores = directores));
   }
-  mostrarDirector() {
-    this.directorService.getDirector('name_Director').forEach((director) => {
-      this.directores = director;
-    });
-  }
 
-  async agregarRegistroDirector(){
+  async agregarRegistroDirector() {
     const modal = await this.modalController.create({
       component: EditarDirectorComponent,
       cssClass: 'modalEditarDirector',
     });
+    modal.onDidDismiss().then(() => this.mostrarDirectores());
     return await modal.present();
   }
 
-  async editarRegistroDirector(directores:Director) {
+  async editarRegistroDirector(id: number) {
     const modal = await this.modalController.create({
       component: EditarDirectorComponent,
-      componentProps: { directores },
+      componentProps: { id },
       cssClass: 'modalEditarDirector',
     });
+    modal.onDidDismiss().then(() => this.mostrarDirectores());
     return await modal.present();
   }
 
@@ -75,6 +72,4 @@ export class HomePage {
       );
     });
   }
-
-
 }
