@@ -2,7 +2,8 @@ const express = require("express");
 const logger = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const routes = require("../director/routes");
+const routesDirector = require("../director/routes");
+const routsMovies = require("../movies/routes");
 
 // This will be our application entry. We'll setup our server here.
 const http = require("http");
@@ -12,7 +13,8 @@ const app = express();
 app.use(logger("dev"));
 app.use(express.json());
 app.use(cors());
-app.use("/", routes);
+app.use("/", routesDirector);
+app.use("/", routsMovies);
 
 // Parse incoming requests data (https://github.com/expressjs/body-parser)
 app.use(bodyParser.json());

@@ -4,6 +4,9 @@ import { Component, OnInit } from '@angular/core';
 import { Director } from '../../interfaces/director';
 import { DirectorService } from '../../services/director-service';
 import { EditarDirectorComponent } from '../editar-director/editar-director.component';
+import { EditarPeliculaComponent } from '../pelicula/editar-pelicula/editar-pelicula.component';
+import { Pelicula } from 'src/interfaces/pelicula';
+import { PeliculaService } from '../../services/pelicula-service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,11 +16,14 @@ import { Router } from '@angular/router';
 })
 export class HomePage {
   directores: Director[] = [];
+  peliculas: Pelicula[] = [];
+
   constructor(
     private directorService: DirectorService,
     private alertController: AlertController,
     private modalController: ModalController,
-    private router: Router
+    private router: Router,
+    private peliculaService: PeliculaService
   ) {}
 
   ngOnInit() {
@@ -71,5 +77,11 @@ export class HomePage {
         (director) => director.PK_idDirector !== id
       );
     });
+  }
+
+  mostrarPeliculas() {
+    this.peliculaService
+      .getPeliculas()
+      .subscribe((peliculas) => (this.peliculas = peliculas));
   }
 }
