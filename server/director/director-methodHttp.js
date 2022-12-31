@@ -3,7 +3,7 @@ const { getConnection } = require("../database/conexion");
 
 //GET - SELECT
 function getDirectores(req, res) {
-  getConnection().query(
+  getConnection().execute(
     "SELECT * FROM moviesbd.Director",
     function (err, result) {
       if (err) {
@@ -15,10 +15,10 @@ function getDirectores(req, res) {
   );
 }
 function getDirector(req, res) {
-  const { name } = req.params;
+  const { id } = req.params;
   getConnection().execute(
-    "SELECT * FROM moviesbd.director WHERE name_Director = ?",
-    [name],
+    "SELECT * FROM moviesbd.director WHERE PK_idDirector = ?",
+    [id],
     function (err, result) {
       if (err) {
         res.header("Access-Control-Allow-Origin", "*").json(err);
@@ -32,10 +32,10 @@ function getDirector(req, res) {
 // POST - INSERT INTO
 function addDirectores(req, res) {
   const { name_Director, age, active_ } = req.body;
+  const director = { name_Director, age, active_ };
   getConnection().query(
-    "INSERT INTO moviesbd.director VALUES (?,?,?)",
-    [name_Director, age, active_],
-    function (err, result) {
+    "INSERT INTO moviesbd.director SET ?", director,
+    function (err, result, fields) {
       if (err) {
         res.header("Access-Control-Allow-Origin", "*").json(err);
         return;
@@ -64,10 +64,10 @@ function deleteDirector(req, res) {
 //UPDATE - PUT
 function updateDirector(req, res) {
   const { id } = req.params;
-  const { name_Director, age, active_ } = req.body;
+  const { name_Director, age,active_ } = req.body;
+  //const director = { name_Director, age, active_ };
   getConnection().execute(
-    "UPDATE moviesbd.director SET name_Director=?, age=?, active_=? WHERE PK_idDirector = ?",
-    [name_Director, age, active_, id],
+    "UPDATE moviesbd.director SET name_Director=?,age=?,active_=? WHERE PK_idDirector = ?", [ name_Director, age,active_, id],
     function (err, result) {
       if (err) {
         res.header("Access-Control-Allow-Origin", "*").json(err);
@@ -76,7 +76,7 @@ function updateDirector(req, res) {
       res.header("Access-Control-Allow-Origin", "*").json(result);
     }
   );
-}
+};
 
 //EXPORTS
 module.exports = {
