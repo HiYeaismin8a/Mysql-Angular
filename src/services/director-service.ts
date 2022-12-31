@@ -16,7 +16,7 @@ export class DirectorService {
   getDirectores(): Observable<Director[]> {
     return this.httpClient.get<Director[]>(`${environment.api}/directores`);
   }
-  updateDirector(id: string, director:Director): Observable<Director>{
+  updateDirector(id: number, director:Director): Observable<Director>{
     return this.httpClient.put<Director>(`${environment.api}/director/${id}`,director);
   }
   deleteDirector(id: number): Observable<any>{
