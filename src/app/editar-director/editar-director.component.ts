@@ -10,7 +10,7 @@ import { DirectorService } from './../../services/director-service';
   styleUrls: ['./editar-director.component.scss'],
 })
 export class EditarDirectorComponent implements OnInit {
-  @Input() id:number=0;
+  @Input() id:number=-1;
 
   director: Director = {
       PK_idDirector :0,
@@ -18,7 +18,7 @@ export class EditarDirectorComponent implements OnInit {
       age: 0,
       active_: 0,
   };
-  directores: Director[] = [];
+
   constructor(
     private directorService: DirectorService,
     private modalController: ModalController,
@@ -26,9 +26,15 @@ export class EditarDirectorComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
+    if(this.id === -1){ //No se consulta informacón
+      return;
+    }
+
     this.director.PK_idDirector = this.id;
-    this.mostrarDirectores();
+    this.mostrarDirector();
   }
+
   editarDirector(){
     this.directorService.updateDirector(this.director.PK_idDirector, this.director).subscribe((res)=>{
       console.log(this.director.PK_idDirector);
@@ -44,11 +50,12 @@ export class EditarDirectorComponent implements OnInit {
     });
   }
 
-  mostrarDirectores() {
+  mostrarDirector() {
     this.directorService
-      .getDirectores()
-      .subscribe((directores) => (this.directores = directores));
+      .getDirector(this.id)
+      .subscribe((director) => (this.director = director));
   }
+
   agregarDirector(){
     this.directorService.addDirector(this.director).subscribe((res)=>{
      console.log(res);
