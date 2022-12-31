@@ -36,7 +36,7 @@ export class EditarDirectorComponent implements OnInit {
   }
 
   editarDirector(){
-    this.directorService.updateDirector(this.director.PK_idDirector, this.director).subscribe((res)=>{
+    this.directorService.updateDirector(this.director.PK_idDirector!!, this.director).subscribe((res)=>{
       console.log(this.director.PK_idDirector);
       console.log(res );
       if(res){

@@ -1,15 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>| LISTA DE DIRECTORES</ion-title>
     <ion-buttons slot="start">
-      <ion-button routerLink="/peliculas">
-        <ion-icon name="play"></ion-icon>
-        Películas |
+      <ion-button (click)="cerrar()">
+        <ion-icon name="close-circle" color="secondary"></ion-icon>
       </ion-button>
     </ion-buttons>
+    <ion-title color="secondary">LISTA DE PELÍCULAS</ion-title>
   </ion-toolbar>
 </ion-header>
-
 
 <ion-content>
   <ion-list>
@@ -23,13 +21,16 @@
             <ion-label>Nombres</ion-label>
           </ion-col>
           <ion-col>
-            <ion-label>Edad </ion-label>
+            <ion-label>Género </ion-label>
           </ion-col>
           <ion-col>
-            <ion-label>Activo</ion-label>
+            <ion-label>Duración</ion-label>
           </ion-col>
           <ion-col>
-            <ion-button (click)="agregarRegistroDirector()">
+            <ion-label>Director</ion-label>
+          </ion-col>
+          <ion-col>
+            <ion-button (click)="agregarRegistroPelicula()">
               <ion-icon name="person-add-outline"></ion-icon>
             </ion-button>
           </ion-col>
@@ -37,20 +38,20 @@
       </ion-grid>
     </ion-item>
 
-    <ion-item *ngFor="let director of directores">
+    <ion-item *ngFor="let pelicula of peliculas">
       <ion-grid>
         <ion-row>
-          <ion-col> {{director.PK_idDirector}} </ion-col>
-          <ion-col> {{director.name_Director}} </ion-col>
-          <ion-col> {{director.age}} </ion-col>
-          <ion-col> {{director.active_ }} </ion-col>
+          <ion-col> {{pelicula.name_movies}} </ion-col>
+          <ion-col> {{pelicula.gender}} </ion-col>
+          <ion-col> {{pelicula.duration}} </ion-col>
+          <ion-col> {{pelicula.name_Director}} </ion-col>
 
           <ion-col>
-            <ion-button color="light" (click)="editarRegistroDirector(director.PK_idDirector!!)">
+            <ion-button color="light" (click)="editarRegistroPelicula(pelicula.PKMovies!!)">
               <ion-icon  style="cursor:pointer;" color="success" name="color-wand-outline" ></ion-icon>
             </ion-button>
 
-            <ion-button color="light" (click)="eliminarRegistroDirector(director.PK_idDirector!!)">
+            <ion-button color="light" (click)="eliminarRegistroPelicula(pelicula.PKMovies!!)">
               <ion-icon  style="cursor:pointer;" color="danger" name="trash-outline" ></ion-icon>
             </ion-button>
           </ion-col>
