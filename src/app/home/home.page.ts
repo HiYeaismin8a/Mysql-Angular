@@ -65,18 +65,31 @@ export class HomePage {
     return await modal.present();
   }
 
-  eliminarRegistroDirector(id: number) {
-    this.mostrarAlerta('ESPERA', '¿Está seguro de ELIMINAR al Director', '');
-    this.directorService.deleteDirector(id).subscribe((valor) => {
-      console.log(valor);
-      if (valor.errno) {
-        this.mostrarAlerta('ERROR', '', '');
-        return;
-      }
-      this.directores = this.directores.filter(
-        (director) => director.PK_idDirector !== id
-      );
+  async eliminarRegistroDirector(id: number) {
+    const alert = await this.alertController.create({
+      header: 'ELIMINAR PELÍCULA',
+      subHeader: '¿Seguro de elimnar ésta película?',
+      message: '',
+      buttons: [
+        {
+          text: 'OK',
+          handler: () => {
+            this.directorService.deleteDirector(id).subscribe((valor) => {
+              console.log(valor);
+              if (valor.errno) {
+                this.mostrarAlerta('ERROR', '', '');
+                return;
+              }
+              this.directores = this.directores.filter(
+                (director) => director.PK_idDirector !== id
+              );
+            });
+          },
+        },
+        'Cancel',
+      ],
     });
+    return alert.present();
   }
 
   mostrarPeliculas() {
