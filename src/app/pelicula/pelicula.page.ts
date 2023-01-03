@@ -4,6 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { EditarPeliculaComponent } from './editar-pelicula/editar-pelicula.component';
 import { Pelicula } from 'src/interfaces/pelicula';
 import { PeliculaService } from 'src/services/pelicula-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pelicula',
@@ -25,7 +26,8 @@ export class PeliculaPage implements OnInit {
   constructor(
     private peliculaService: PeliculaService,
     private modalController: ModalController,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -94,7 +96,7 @@ export class PeliculaPage implements OnInit {
     return alert.present();
   }
 
-  cerrar() {
+  regresarListaDirector() {
     this.modalController.dismiss();
   }
 }
