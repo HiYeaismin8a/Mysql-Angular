@@ -10,13 +10,13 @@ import { environment } from '../environments/environment'
 export class DirectorService {
   constructor(private httpClient: HttpClient) {
   }
-  getDirector(id: string): Observable<Director[]> {
-    return this.httpClient.get<Director[]>(`${environment.api}/director/${id}`);
+  getDirector(id: number): Observable<Director> {
+    return this.httpClient.get<Director>(`${environment.api}/director/${id}`);
   }
   getDirectores(): Observable<Director[]> {
     return this.httpClient.get<Director[]>(`${environment.api}/directores`);
   }
-  updateDirector(id: string, director:Director): Observable<Director>{
+  updateDirector(id: number, director:Director): Observable<Director>{
     return this.httpClient.put<Director>(`${environment.api}/director/${id}`,director);
   }
   deleteDirector(id: number): Observable<any>{
