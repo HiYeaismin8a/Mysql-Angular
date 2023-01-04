@@ -77,7 +77,7 @@ export class HomePage {
             this.directorService.deleteDirector(id).subscribe((valor) => {
               console.log(valor);
               if (valor.errno) {
-                this.mostrarAlerta('ERROR', '', '');
+                this.mostrarAlerta('ERROR', 'Tiene películas asociadas', 'No puede ser eliminada');
                 return;
               }
               this.directores = this.directores.filter(
