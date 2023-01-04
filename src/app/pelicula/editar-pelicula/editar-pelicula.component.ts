@@ -12,28 +12,29 @@ import { PeliculaService } from 'src/services/pelicula-service';
   styleUrls: ['./editar-pelicula.component.scss'],
 })
 export class EditarPeliculaComponent implements OnInit {
-  @Input() id:number=-1;
+  @Input() id: number = -1;
   directores: Director[] = [];
 
-  pelicula : Pelicula ={
-   PKMovies:0,
-   name_movies:'',
-   gender:'',
-   duration:'',
-   FK_idDirector: 0,
-   name_Director:'',
+  pelicula: Pelicula = {
+    PKMovies: 0,
+    name_movies: '',
+    gender: '',
+    duration: '',
+    FK_idDirector: 0,
+    name_Director: '',
   };
 
   constructor(
     private peliculaService: PeliculaService,
     private modalController: ModalController,
     private directorService: DirectorService,
-    private alertController: AlertController,
-  ) { }
+    private alertController: AlertController
+  ) {}
 
   ngOnInit() {
     this.mostrarDirectores();
-    if(this.id === -1){ //No se consulta informacón
+    if (this.id === -1) {
+      //No se consulta informacón
       return;
     }
     this.pelicula.PKMovies = this.id;
@@ -41,17 +42,19 @@ export class EditarPeliculaComponent implements OnInit {
   }
 
   mostrarPelicula() {
-    this.peliculaService.getPelicula(this.id).subscribe((pelicula) => (this.pelicula = pelicula));
+    this.peliculaService
+      .getPelicula(this.id)
+      .subscribe((pelicula) => (this.pelicula = pelicula));
   }
   mostrarDirectores() {
     this.directorService
       .getDirectores()
       .subscribe((directores) => (this.directores = directores));
   }
-  agregarPelicula(){
-    this.peliculaService.addPelicula(this.pelicula).subscribe((res)=>{
+  agregarPelicula() {
+    this.peliculaService.addPelicula(this.pelicula).subscribe((res) => {
       console.log(res);
-      if(res){
+      if (res) {
         this.mostrarAlerta(
           'Registro exitoso',
           'Película registrada',
@@ -62,19 +65,21 @@ export class EditarPeliculaComponent implements OnInit {
     });
   }
   //OBTENER LA FK DEL DIRECTOR (ESPECÍFICO)
-  editarPelicula(){
-    this.peliculaService.updatePelicula(this.pelicula.PKMovies!!, this.pelicula).subscribe((res)=>{
-      console.log(this.pelicula.PKMovies);
-      console.log(res );
-      if(res){
-        this.mostrarAlerta(
-          'Actualización exitosa',
-          'Película Actualizada',
-          'La Película se ha actualizado correctamente'
-        );
-        this.cerrar();
-      }
-    });
+  editarPelicula() {
+    this.peliculaService
+      .updatePelicula(this.pelicula.PKMovies!!, this.pelicula)
+      .subscribe((res) => {
+        console.log(this.pelicula.PKMovies);
+        console.log(res);
+        if (res) {
+          this.mostrarAlerta(
+            'Actualización exitosa',
+            'Película Actualizada',
+            'La Película se ha actualizado correctamente'
+          );
+          this.cerrar();
+        }
+      });
   }
   async mostrarAlerta(titulo: string, subtitulo: string, mensaje: string) {
     const alert = await this.alertController.create({
@@ -86,8 +91,7 @@ export class EditarPeliculaComponent implements OnInit {
     return alert.present();
   }
 
-
-  cerrar(){
+  cerrar() {
     this.modalController.dismiss();
   }
 }

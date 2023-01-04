@@ -5,7 +5,9 @@
         <ion-icon name="close-circle" color="secondary"></ion-icon>
       </ion-button>
     </ion-buttons>
-    <ion-title color="secondary">{{id===-1? 'AGREGAR': 'EDITAR'}} DIRECTOR</ion-title>
+    <ion-title color="secondary"
+      >{{ id === -1 ? "AGREGAR" : "EDITAR" }} DIRECTOR</ion-title
+    >
   </ion-toolbar>
 </ion-header>
 
@@ -30,11 +32,8 @@
           <ion-col class="ion-margin-top ion-margin-bottom">
             <ion-item>
               <ion-label position="floating">EDAD </ion-label>
-              <ion-input
-              [(ngModel)]="director.age"
-              type="text"
-              required
-              > </ion-input>
+              <ion-input [(ngModel)]="director.age" type="text" required>
+              </ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -42,11 +41,8 @@
           <ion-col class="ion-margin-top ion-margin-bottom">
             <ion-item>
               <ion-label position="floating"> ACTIVO </ion-label>
-              <ion-input
-              [(ngModel)]="director.active_"
-              type="text"
-              required
-              > </ion-input>
+              <ion-input [(ngModel)]="director.active_" type="text" required>
+              </ion-input>
             </ion-item>
           </ion-col>
         </ion-row>
@@ -54,8 +50,12 @@
     </ion-card-content>
 
     <ion-card-content>
-      <ion-button (click)="agregarDirector()" [hidden]="id!==-1"> AGREGAR </ion-button>
-      <ion-button (click)="editarDirector()" [hidden]="id===-1" > EDITAR </ion-button>
+      <ion-button (click)="agregarDirector()" [hidden]="id !== -1">
+        AGREGAR
+      </ion-button>
+      <ion-button (click)="editarDirector()" [hidden]="id === -1">
+        EDITAR
+      </ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>

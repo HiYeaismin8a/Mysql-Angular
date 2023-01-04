@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-back-button defaultHref="home" ></ion-back-button>
+      <ion-back-button defaultHref="home"></ion-back-button>
     </ion-buttons>
     <ion-title color="secondary">LISTA DE PELÍCULAS</ion-title>
   </ion-toolbar>
@@ -45,12 +45,26 @@
           <ion-col> {{pelicula.name_Director}} </ion-col>
 
           <ion-col>
-            <ion-button color="light" (click)="editarRegistroPelicula(pelicula.PKMovies!!)">
-              <ion-icon  style="cursor:pointer;" color="success" name="color-wand-outline" ></ion-icon>
+            <ion-button
+              color="light"
+              (click)="editarRegistroPelicula(pelicula.PKMovies!!)"
+            >
+              <ion-icon
+                style="cursor: pointer"
+                color="success"
+                name="color-wand-outline"
+              ></ion-icon>
             </ion-button>
 
-            <ion-button color="light" (click)="eliminarRegistroPelicula(pelicula.PKMovies!!)">
-              <ion-icon  style="cursor:pointer;" color="danger" name="trash-outline" ></ion-icon>
+            <ion-button
+              color="light"
+              (click)="eliminarRegistroPelicula(pelicula.PKMovies!!)"
+            >
+              <ion-icon
+                style="cursor: pointer"
+                color="danger"
+                name="trash-outline"
+              ></ion-icon>
             </ion-button>
           </ion-col>
         </ion-row>

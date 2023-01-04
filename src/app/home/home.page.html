@@ -10,7 +10,6 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content>
   <ion-list>
     <ion-item>
@@ -46,12 +45,26 @@
           <ion-col> {{director.active_ }} </ion-col>
 
           <ion-col>
-            <ion-button color="light" (click)="editarRegistroDirector(director.PK_idDirector!!)">
-              <ion-icon  style="cursor:pointer;" color="success" name="color-wand-outline" ></ion-icon>
+            <ion-button
+              color="light"
+              (click)="editarRegistroDirector(director.PK_idDirector!!)"
+            >
+              <ion-icon
+                style="cursor: pointer"
+                color="success"
+                name="color-wand-outline"
+              ></ion-icon>
             </ion-button>
 
-            <ion-button color="light" (click)="eliminarRegistroDirector(director.PK_idDirector!!)">
-              <ion-icon  style="cursor:pointer;" color="danger" name="trash-outline" ></ion-icon>
+            <ion-button
+              color="light"
+              (click)="eliminarRegistroDirector(director.PK_idDirector!!)"
+            >
+              <ion-icon
+                style="cursor: pointer"
+                color="danger"
+                name="trash-outline"
+              ></ion-icon>
             </ion-button>
           </ion-col>
         </ion-row>

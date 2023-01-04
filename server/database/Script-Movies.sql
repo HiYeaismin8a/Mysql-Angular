@@ -3,7 +3,6 @@ Siempre en inglés.
 Nombres de las tablas siempre MAYÚSCULAS y en plural.
 Nombres de los campos siempre minúscula y en singular. */
 
-/*DROP DATABASE moviesBD;*/
 CREATE DATABASE moviesBD;
 USE moviesBD;
 
@@ -26,21 +25,18 @@ CREATE TABLE Movies(
 );
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'TBD2';
 
+
+/*
 SELECT * FROM director;
 SELECT * FROM Movies;
 SELECT * FROM Movies WHERE PKMovies =2;
-CREATE VIEW vistaDirector AS SELECT name_Director AS "NOMBRE DEL DIRECTOR" , age AS "EDAD", active_ AS "Activo (1= Sí o 0= No)" FROM director;
-CREATE VIEW vistaMovies AS SELECT PKMovies AS "ID", name_movies AS "NOMBRE DE LA PELÍCULA", gender AS "GÉNERO", duration AS "DURACIÓN", FK_idDirector AS "DIRECTOR" FROM movies;
-/*
-DROP VIEW vistaDirector;
-DROP VIEW vistaMovies;
-DROP TABLE movies ;
-DROP TABLE director ;
-DROP VIEW vistaDirector;
-DROP VIEW vistaMovies;
-*/
 SELECT * FROM vistaMovies;
 SELECT * FROM vistaDirector;
+SELECT name_movies, gender, duration, d.name_Director
+FROM movies INNER JOIN director as d ON movies.FK_idDirector = d.PK_idDirector;
+
+CREATE VIEW vistaDirector AS SELECT name_Director AS "NOMBRE DEL DIRECTOR" , age AS "EDAD", active_ AS "Activo (1= Sí o 0= No)" FROM director;
+CREATE VIEW vistaMovies AS SELECT PKMovies AS "ID", name_movies AS "NOMBRE DE LA PELÍCULA", gender AS "GÉNERO", duration AS "DURACIÓN", FK_idDirector AS "DIRECTOR" FROM movies;
 
 INSERT INTO director (name_Director,age,active_)
 VALUES("San Juan Ortencio Federal","35","1");
@@ -49,7 +45,14 @@ INSERT INTO movies(name_movies, gender, duration,FK_idDirector)
 VALUES("EL INFRAMUNDO DE TU ALMA","TERROR","1:20:00",1);
 
 UPDATE moviesbd.movies SET FK_idDirector='7' WHERE PKMovies >=0;
-DELETE FROM moviesbd.movies WHERE PKMovies = 1;
+*/
 
-SELECT name_movies, gender, duration, d.name_Director
-FROM movies INNER JOIN director as d ON movies.FK_idDirector = d.PK_idDirector;
+/*DROP DATABASE moviesBD;
+DROP VIEW vistaDirector;
+DROP VIEW vistaMovies;
+DELETE FROM moviesbd.movies WHERE PKMovies = 1; 
+DROP TABLE movies ;
+DROP TABLE director ;
+DROP VIEW vistaDirector;
+DROP VIEW vistaMovies;
+*/

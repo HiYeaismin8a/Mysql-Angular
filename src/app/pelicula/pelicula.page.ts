@@ -27,7 +27,7 @@ export class PeliculaPage implements OnInit {
     private peliculaService: PeliculaService,
     private modalController: ModalController,
     private alertController: AlertController,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit() {
