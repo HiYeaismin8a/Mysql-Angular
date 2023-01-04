@@ -36,6 +36,7 @@ export class EditarDirectorComponent implements OnInit {
   }
 
   editarDirector() {
+    if(!this.validaciones()) return;
     this.directorService
       .updateDirector(this.director.PK_idDirector!!, this.director)
       .subscribe((res) => {
@@ -59,6 +60,7 @@ export class EditarDirectorComponent implements OnInit {
   }
 
   agregarDirector() {
+    if(!this.validaciones()) return;
     this.directorService.addDirector(this.director).subscribe((res) => {
       console.log(res);
       if (res) {
@@ -81,7 +83,33 @@ export class EditarDirectorComponent implements OnInit {
     });
     return alert.present();
   }
-
+  validaciones():Boolean{
+    if(!this.director.name_Director){
+      this.mostrarAlerta(
+        'Datos vacíos ',
+        'Rellene el Nombre del Director',
+        ''
+      );
+      return false;
+    }
+    if(this.director.age>0){
+      this.mostrarAlerta(
+        'Datos vacíos ',
+        'Rellene el Nombre del Director',
+        ''
+      );
+      return false;
+  }
+  if(this.director.active_ !==0 && this.director.active_ !==1){
+    this.mostrarAlerta(
+      'Datos vacíos ',
+      'Rellene si es activo o no el Director',
+      '1 o 0'
+    );
+    return false;
+  }
+  return true;
+}
   cerrar() {
     this.modalController.dismiss();
   }

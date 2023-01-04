@@ -52,6 +52,7 @@ export class EditarPeliculaComponent implements OnInit {
       .subscribe((directores) => (this.directores = directores));
   }
   agregarPelicula() {
+    if(!this.validaciones()) return;
     this.peliculaService.addPelicula(this.pelicula).subscribe((res) => {
       console.log(res);
       if (res) {
@@ -64,8 +65,9 @@ export class EditarPeliculaComponent implements OnInit {
       }
     });
   }
-  //OBTENER LA FK DEL DIRECTOR (ESPECÍFICO)
+
   editarPelicula() {
+    this.validaciones();
     this.peliculaService
       .updatePelicula(this.pelicula.PKMovies!!, this.pelicula)
       .subscribe((res) => {
@@ -89,6 +91,34 @@ export class EditarPeliculaComponent implements OnInit {
       buttons: ['OK'],
     });
     return alert.present();
+  }
+
+  validaciones(): Boolean{
+    if(!this.pelicula.name_movies){
+      this.mostrarAlerta(
+        'Datos vacíos ',
+        'Rellene el Nombre de la película',
+        ''
+      );
+      return false;
+    }
+    if(!this.pelicula.gender){
+      this.mostrarAlerta(
+        'Datos vacíos ',
+        'Rellene el Género de la película',
+        ''
+      );
+      return false;
+    }
+    if(!this.pelicula.duration){
+      this.mostrarAlerta(
+        'Datos vacíos ',
+        'Rellene la duración de la película',
+        ''
+      );
+      return false;
+    }
+    return true;
   }
 
   cerrar() {
