@@ -118,7 +118,7 @@ export class EditarPeliculaComponent implements OnInit {
       );
       return false;
     }
-    if(!this.pelicula.duration.match(/\d{1,2}:\d{2}:\d{2}/)){
+    if(!this.pelicula.duration.match(/^\d{1,2}:\d{2}:\d{2}$/)){
       this.mostrarAlerta(
         'Datos Incorrectos ',
         'Rellene ejem: 1:20:30',

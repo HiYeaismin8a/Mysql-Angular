@@ -4,7 +4,7 @@
 ## INSTRUCCIONES DE BD:
 1. Correr una instancia de mysql en el puerto 3306
 2. Abrir el documento de [conexion.js](./server/database/conexion.js)
-3. Modificar la constraseña en el documento antes mencionado, para poder conectar con la instancia.
+3. Modificar la contraseña en el documento antes mencionado, para poder conectar con la instancia.
 4. Ejecutar el [script](./server/database/Script-Movies.sql) en la instancia de mysql.
 
 ## INSTRUCCIONES DE EJECUCIÓN:

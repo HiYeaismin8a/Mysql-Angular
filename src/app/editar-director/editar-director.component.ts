@@ -92,15 +92,15 @@ export class EditarDirectorComponent implements OnInit {
       );
       return false;
     }
-    if(this.director.age<=0){
+    if(this.director.age<=8){
       this.mostrarAlerta(
         'Datos vacíos ',
-        'Rellene la Edad del Director',
+        'Rellene la correctamente la Edad del Director',
         ''
       );
       return false;
   }
-  if(this.director.active_ !==0 && this.director.active_ !==1){
+  if(this.director.active_ <0 || this.director.active_ >1){
     this.mostrarAlerta(
       'Datos vacíos ',
       'Rellene si es activo o no el Director',
@@ -108,6 +108,7 @@ export class EditarDirectorComponent implements OnInit {
     );
     return false;
   }
+
   return true;
 }
   cerrar() {
