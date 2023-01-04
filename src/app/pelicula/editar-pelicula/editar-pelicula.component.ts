@@ -118,6 +118,14 @@ export class EditarPeliculaComponent implements OnInit {
       );
       return false;
     }
+    if(this.pelicula.duration.match(/\d{1,2}:\d{2}:\d{2}/)){
+      this.mostrarAlerta(
+        'Datos Incorrectos ',
+        'Rellene ejem: 1:20:30',
+        '01:20:30'
+      );
+      return false;
+    }
     if(this.pelicula.FK_idDirector<0){
       this.mostrarAlerta(
         'Datos vacíos ',
@@ -126,6 +134,7 @@ export class EditarPeliculaComponent implements OnInit {
       );
       return false;
     }
+
     return true;
   }
 
