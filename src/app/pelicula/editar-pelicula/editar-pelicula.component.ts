@@ -67,7 +67,7 @@ export class EditarPeliculaComponent implements OnInit {
   }
 
   editarPelicula() {
-    this.validaciones();
+    if(!this.validaciones()) return;
     this.peliculaService
       .updatePelicula(this.pelicula.PKMovies!!, this.pelicula)
       .subscribe((res) => {
@@ -113,7 +113,7 @@ export class EditarPeliculaComponent implements OnInit {
     if(!this.pelicula.duration){
       this.mostrarAlerta(
         'Datos vacíos ',
-        'Rellene la duración de la película',
+        'Rellene la Duración de la película',
         ''
       );
       return false;

@@ -95,7 +95,7 @@ export class EditarDirectorComponent implements OnInit {
     if(this.director.age<=0){
       this.mostrarAlerta(
         'Datos vacíos ',
-        'Rellene el Nombre del Director',
+        'Rellene la Edad del Director',
         ''
       );
       return false;
