@@ -46,11 +46,13 @@ export class EditarPeliculaComponent implements OnInit {
       .getPelicula(this.id)
       .subscribe((pelicula) => (this.pelicula = pelicula));
   }
+  
   mostrarDirectores() {
     this.directorService
       .getDirectores()
       .subscribe((directores) => (this.directores = directores));
   }
+
   agregarPelicula() {
     if(!this.validaciones()) return;
     this.peliculaService.addPelicula(this.pelicula).subscribe((res) => {
@@ -83,6 +85,7 @@ export class EditarPeliculaComponent implements OnInit {
         }
       });
   }
+
   async mostrarAlerta(titulo: string, subtitulo: string, mensaje: string) {
     const alert = await this.alertController.create({
       header: titulo,

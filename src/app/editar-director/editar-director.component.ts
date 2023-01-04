@@ -83,6 +83,7 @@ export class EditarDirectorComponent implements OnInit {
     });
     return alert.present();
   }
+
   validaciones():Boolean{
     if(!this.director.name_Director){
       this.mostrarAlerta(
@@ -111,6 +112,7 @@ export class EditarDirectorComponent implements OnInit {
 
   return true;
 }
+
   cerrar() {
     this.modalController.dismiss();
   }
