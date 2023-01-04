@@ -118,6 +118,14 @@ export class EditarPeliculaComponent implements OnInit {
       );
       return false;
     }
+    if(this.pelicula.FK_idDirector<0){
+      this.mostrarAlerta(
+        'Datos vacíos ',
+        'Seleccione un director para la película',
+        ''
+      );
+      return false;
+    }
     return true;
   }
 
