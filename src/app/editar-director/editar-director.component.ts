@@ -13,7 +13,7 @@ export class EditarDirectorComponent implements OnInit {
   @Input() id: number = -1;
 
   director: Director = {
-    PK_idDirector: 0,
+    PK_idDirector: -1,
     name_Director: '',
     age: 0,
     active_: 0,

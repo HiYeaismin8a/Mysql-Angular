@@ -16,11 +16,11 @@ export class EditarPeliculaComponent implements OnInit {
   directores: Director[] = [];
 
   pelicula: Pelicula = {
-    PKMovies: 0,
+    PKMovies: -1,
     name_movies: '',
     gender: '',
     duration: '',
-    FK_idDirector: 0,
+    FK_idDirector: -1,
     name_Director: '',
   };
 
