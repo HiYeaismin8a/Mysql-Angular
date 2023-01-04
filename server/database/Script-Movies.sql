@@ -3,10 +3,10 @@ Siempre en inglés.
 Nombres de las tablas siempre MAYÚSCULAS y en plural.
 Nombres de los campos siempre minúscula y en singular. */
 
-CREATE DATABASE moviesBD;
-USE moviesBD;
+CREATE DATABASE moviesbd;
+USE moviesbd;
 
-CREATE TABLE Director(
+CREATE TABLE director(
 	PK_idDirector INT NOT NULL AUTO_INCREMENT,
     name_Director VARCHAR(100) NOT NULL,
     age INT NOT NULL,
@@ -14,14 +14,14 @@ CREATE TABLE Director(
     PRIMARY KEY(PK_idDirector)
 );
 
-CREATE TABLE Movies(
+CREATE TABLE movies(
 	PKMovies INT NOT NULL AUTO_INCREMENT,
 	name_movies VARCHAR(100) NOT NULL,
     gender VARCHAR(50) NOT NULL,
     duration TIME NOT NULL,
     FK_idDirector INT,
     PRIMARY KEY (PKMovies),
-    FOREIGN KEY(FK_idDirector) REFERENCES Director(PK_idDirector)
+    FOREIGN KEY(FK_idDirector) REFERENCES director(PK_idDirector)
 );
 ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'TBD2';
 
@@ -50,7 +50,7 @@ UPDATE moviesbd.movies SET FK_idDirector='7' WHERE PKMovies >=0;
 /*DROP DATABASE moviesBD;
 DROP VIEW vistaDirector;
 DROP VIEW vistaMovies;
-DELETE FROM moviesbd.movies WHERE PKMovies = 1; 
+DELETE FROM moviesbd.movies WHERE PKMovies = 1;
 DROP TABLE movies ;
 DROP TABLE director ;
 DROP VIEW vistaDirector;

@@ -4,7 +4,7 @@ const { getConnection } = require("../database/conexion");
 //GET - SELECT
 function getDirectores(req, res) {
   getConnection().execute(
-    "SELECT * FROM moviesbd.Director",
+    "SELECT * FROM moviesbd.director",
     function (err, result) {
       if (err) {
         res.header("Access-Control-Allow-Origin", "*").json(err);
